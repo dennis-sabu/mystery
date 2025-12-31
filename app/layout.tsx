@@ -24,6 +24,28 @@ const permanentMarker = Permanent_Marker({
 export const metadata: Metadata = {
   title: "New Year 2026 | Gen-Z Edition",
   description: "Send a vibey New Year greeting. No cringe allowed.",
+  openGraph: {
+    title: "New Year 2026 | Gen-Z Edition",
+    description: "Send a vibey New Year greeting. No cringe allowed.",
+    url: "https://mystery-v7p.pages.dev",
+    siteName: "New Year 2026",
+    images: [
+      {
+        url: "/image.png",
+        width: 1200,
+        height: 630,
+        alt: "New Year 2026 Wishes",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "New Year 2026 | Gen-Z Edition",
+    description: "Send a vibey New Year greeting. No cringe allowed.",
+    images: ["/image.png"],
+  },
 };
 
 
