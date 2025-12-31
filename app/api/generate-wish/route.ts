@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export const runtime = 'edge';
 
 // Ensure we pick up the key from the environment
-// The user mentions it should be GEMINI_API_KEY
-// We'll use GOOGLE_API_KEY3 as it looks the most complete (39 chars)
 const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY3 || process.env.GOOGLE_API_KEY;
 
 export async function POST(request: Request) {
@@ -17,7 +15,8 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Missing API Key. Please check your .env" }, { status: 500 });
         }
 
-        const ai = new GoogleGenAI({ apiKey });
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
         const prompt = `Generate a single, short, funny, and Gen-Z style New Year 2026 wish for someone named "${name || 'a friend'}". 
 
@@ -30,12 +29,9 @@ Requirements:
 - Just return the wish text, nothing else`;
 
         try {
-            const response = await ai.models.generateContent({
-                model: "gemini-2.0-flash",
-                contents: prompt,
-            });
-
-            const generatedText = response.text?.trim();
+            const result = await model.generateContent(prompt);
+            const response = result.response;
+            const generatedText = response.text()?.trim();
 
             if (!generatedText) {
                 return NextResponse.json({ error: "Empty response from AI" }, { status: 500 });
