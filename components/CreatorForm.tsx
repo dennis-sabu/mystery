@@ -105,7 +105,7 @@ export default function CreatorForm() {
         const finalMessage = message || "Happy New Year! 2026 is gonna be epic.";
         const data = { n: name, m: finalMessage, t: selectedTemplate };
         const encoded = encodeData(data);
-        const link = `${window.location.origin}?d=${encoded}`;
+        const link = `https://mystery-v7p.pages.dev?d=${encoded}`;
         setGeneratedLink(link);
     };
 
