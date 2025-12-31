@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
 
+export const runtime = 'edge';
+
 // Ensure we pick up the key from the environment
 // The user mentions it should be GEMINI_API_KEY
 // We'll use GOOGLE_API_KEY3 as it looks the most complete (39 chars)
