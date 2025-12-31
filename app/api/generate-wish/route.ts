@@ -18,7 +18,7 @@ export async function POST(request: Request) {
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
-        const prompt = `Generate a single, short, funny, and Gen-Z style New Year 2026 wish for someone named "${name || 'a friend'}". 
+        const prompt = `Generate a single, short, funny New Year 2026 wish for someone named "${name || 'a friend'}". 
 
 Requirements:
 - Keep it under 25 words
